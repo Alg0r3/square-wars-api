@@ -34,14 +34,23 @@ indent_size = 4
 indent_style = tab
 indent_size = 4
 
-[*.xml{,.dist}]
+[*.xml.dist]
 indent_style = space
 indent_size = 4
 
 [*.{yaml,yml}]
 indent_style = space
-indent_size = 4
+indent_size = 2
 trim_trailing_whitespace = false
+
+[*.yaml.dist]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = false
+
+[*.feature]
+indent_style = space
+indent_size = 2
 
 [helm/api-platform/**.yaml]
 indent_style = space
@@ -55,7 +64,7 @@ indent_size = 2
 indent_style = tab
 indent_size = 4
 
-[.php_cs{,.dist}]
+[.php_cs.dist]
 indent_style = space
 indent_size = 4
 
@@ -67,7 +76,7 @@ indent_size = 2
 indent_style = space
 indent_size = 4
 
-[docker-compose{,.*}.{yaml,yml}]
+[docker-compose.*.{yaml,yml}]
 indent_style = space
 indent_size = 2
 

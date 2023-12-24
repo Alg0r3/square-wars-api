@@ -1,0 +1,12 @@
+default:
+  formatters:
+    progress: ~
+  suites:
+    default:
+      contexts:
+        - App\Tests\Behat\Context\DemoContext: ~
+      paths:
+        - "%paths.base%/tests/Behat/Feature"
+
+  extensions:
+    FriendsOfBehat\SymfonyExtension: ~
