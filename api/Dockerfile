@@ -26,6 +26,7 @@ RUN apk add --no-cache \
 		file \
 		gettext \
 		git \
+    	make \
 	;
 
 RUN set -eux; \
@@ -73,6 +74,20 @@ RUN set -eux; \
 COPY --link frankenphp/conf.d/app.dev.ini $PHP_INI_DIR/conf.d/
 
 CMD [ "frankenphp", "run", "--config", "/etc/caddy/Caddyfile", "--watch" ]
+
+# Test FrankenPHP image
+FROM frankenphp_base AS frankenphp_test
+
+ENV APP_ENV=test XDEBUG_MODE=coverage
+
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+
+RUN set -eux; \
+    install-php-extensions \
+        xdebug \
+    ;
+
+COPY --link frankenphp/conf.d/app.test.ini $PHP_INI_DIR/conf.d/
 
 # Prod FrankenPHP image
 FROM frankenphp_base AS frankenphp_prod

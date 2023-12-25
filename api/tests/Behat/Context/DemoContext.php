@@ -11,13 +11,11 @@ use Symfony\Component\HttpKernel\KernelInterface;
 
 final class DemoContext implements Context
 {
-    private KernelInterface $kernel;
-
     private ?Response $response;
 
-    public function __construct(KernelInterface $kernel)
-    {
-        $this->kernel = $kernel;
+    public function __construct(
+        private readonly KernelInterface $kernel
+    ) {
     }
 
     /**

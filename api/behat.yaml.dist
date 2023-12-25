@@ -5,6 +5,7 @@ default:
     default:
       contexts:
         - App\Tests\Behat\Context\DemoContext: ~
+          kernel: '@kernel'
       paths:
         - "%paths.base%/tests/Behat/Feature"
 

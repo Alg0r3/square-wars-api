@@ -1,0 +1,11 @@
+version: "3.4"
+
+# Testing environment override
+services:
+  php:
+    build:
+      context: ./api
+      target: frankenphp_test
+    volumes:
+      - ./api:/app
+      - /app/var
