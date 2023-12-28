@@ -1,50 +1,67 @@
-<h1 align="center"><a href="https://api-platform.com"><img src="https://api-platform.com/images/logos/Logo_Circle%20webby%20text%20blue.png" alt="API Platform" width="250" height="250"></a></h1>
+# Square Wars API
 
-API Platform is a next-generation web framework designed to easily create API-first projects without compromising extensibility
-and flexibility:
+## Overview
+Square Wars API is the back-end implementation of the Square Wars application which replicated the dots and boxes game 
+in a Web environment.
 
-* Design your own data model as plain old PHP classes or [**import an existing ontology**](https://api-platform.com/docs/schema-generator).
-* **Expose in minutes a hypermedia REST or a GraphQL API** with pagination, data validation, access control, relation embedding,
-  filters, and error handling...
-* Benefit from Content Negotiation: [GraphQL](https://api-platform.com/docs/core/graphql/), [JSON-LD](https://json-ld.org), [Hydra](https://hydra-cg.com),
-  [HAL](https://github.com/mikekelly/hal_specification/blob/master/hal_specification.md), [JSON:API](https://jsonapi.org/), [YAML](https://yaml.org/), [JSON](https://www.json.org/), [XML](https://www.w3.org/XML/) and [CSV](https://www.ietf.org/rfc/rfc4180.txt) are supported out of the box.
-* Enjoy the **beautiful automatically generated API documentation** ([OpenAPI](https://api-platform.com/docs/core/openapi/)).
-* Add [**a convenient Material Design administration interface**](https://api-platform.com/docs/admin) built with [React](https://reactjs.org/)
-  without writing a line of code.
-* **Scaffold fully functional Progressive-Web-Apps and mobile apps** built with [Next.js](https://api-platform.com/docs/client-generator/nextjs/) (React),
-[Nuxt.js](https://api-platform.com/docs/client-generator/nuxtjs/) (Vue.js) or [React Native](https://api-platform.com/docs/client-generator/react-native/)
-thanks to [the client generator](https://api-platform.com/docs/client-generator/) (a Vue.js generator is also available).
-* Install a development environment and deploy your project in production using **[Docker](https://api-platform.com/docs/distribution)**
-and [Kubernetes](https://api-platform.com/docs/deployment/kubernetes).
-* Easily add **[OAuth](https://oauth.net/) authentication**.
-* Create specs and tests with **[a developer friendly API testing tool](https://api-platform.com/docs/distribution/testing/)**.
+It leverages modern web technologies to facilitate real-time player interactions without relying on a traditional 
+database, opting for an in-memory data store for session management. The application's architecture is crafted to 
+support the quick and dynamic nature of multiplayer gaming.
 
-[![GitHub Actions](https://github.com/api-platform/core/workflows/CI/badge.svg)](https://github.com/api-platform/core/actions?workflow=CI)
-[![Codecov](https://codecov.io/gh/api-platform/core/branch/master/graph/badge.svg)](https://codecov.io/gh/api-platform/core/branch/master)
+## Technologies
+- API Platform 3.2
+- Symfony 6.3
+- PHP: 8.2
 
-The official project documentation is available **[on the API Platform website](https://api-platform.com)**.
+## Development and Operations
 
-API Platform embraces open web standards and the
-[Linked Data](https://www.w3.org/standards/semanticweb/data) movement. Your API will automatically expose structured data.
-It means that your API Platform application is usable **out of the box** with technologies of
-the semantic web.
+### Makefile Usage
+Those targets are used during the GitHub Actions CI, so they should be run locally before each push to the repository to
+ensure the code stays clean and easily maintainable.
 
-It also means that **your SEO will be improved** because **[Google leverages these formats](https://developers.google.com/search/docs/guides/intro-structured-data)**.
+- Running Tests: 
+```shell
+# PHPUnit and Behat tests.
+make test
+```
+- Code Style Checks:
+```shell
+# PHP-CS-Fixer checks and PHPStan code analysis.
+make lint 
+```
+For more information on the available targets:
+```shell
+make help
+```
 
-Last but not least, the server component of API Platform is built on top of the [Symfony](https://symfony.com) framework,
-while client components leverage [React](https://reactjs.org/) ([Vue.js](https://vuejs.org/) flavors are also available).
-It means that you can:
+### Continuous Integration
+The GitHub Actions CI setup includes:
+- Docker image builds and service startup.
+- HTTP and API reachability checks.
+- Test execution and linting within Docker.
 
-* Use **thousands of Symfony bundles and React components** with API Platform.
-* Integrate API Platform in **any existing Symfony, React, or Vue application**.
-* Reuse **all your Symfony and JavaScript skills**, and benefit from the incredible amount of documentation available.
-* Enjoy the popular [Doctrine ORM](https://www.doctrine-project.org/projects/orm.html) (used by default, but fully optional:
-  you can use the data provider you want, including but not limited to MongoDB and Elasticsearch)
+### Getting Started
+Clone the Repository: 
+```shell
+git clone https://github.com/Alg0r3/square-wars-api.gitrepository-url
+```
 
-## Install
+Start the Application:
+- Either through docker compose
+```shell
+docker compose up --detach
+```
+- Or Symfony's tailored local web server
+```shell
+symfony serve --no-tls --daemon
+```
 
-[Read the official "Getting Started" guide](https://api-platform.com/docs/distribution).
-
-## Credits
-
-Created by [Kévin Dunglas](https://dunglas.fr). Commercial support is available at [Les-Tilleuls.coop](https://les-tilleuls.coop).
+Stop the application:
+- Either through docker compose
+```shell
+docker compose down
+```
+- Or Symfony's tailored local web server
+```shell
+symfony server:stop
+```
