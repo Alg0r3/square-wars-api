@@ -27,7 +27,6 @@ jobs:
           load: true
           files: |
             docker-compose.yaml
-            docker-compose.override.yaml
             docker-compose.test.yaml
           set: |
             *.cache-from=type=gha,scope=${{github.ref}}
@@ -41,6 +40,10 @@ jobs:
         run: curl -vk -o /dev/null https://localhost
       - name: Check PWA reachability
         run: "curl -vk -o /dev/null -H 'Accept: text/html' https://localhost"
+      - name: Create test database
+        run: docker compose exec -T php bin/console -e test doctrine:database:create
+      - name: Run migrations
+        run: docker compose exec -T php bin/console -e test doctrine:migrations:migrate --no-interaction
       - name: Run Tests (PHPUnit and Behat)
         env: 
           APP_ENV: test
