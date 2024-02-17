@@ -65,6 +65,11 @@ final class UserFactory extends ModelFactory
         return User::class;
     }
 
+    public function withUserIdentifier(string $userIdentifier): self
+    {
+        return $this->addState(['userIdentifier' => $userIdentifier]);
+    }
+
     public function withPassword(string $password): self
     {
         $hasher = $this->passwordHasherFactory->getPasswordHasher(User::class);
